@@ -17,7 +17,8 @@ public class BingBall extends BasicGame{
 	private Floor floor;
 	public static final int GAME_WIDTH = 320;
 	public static final int GAME_HEIGHT = 480;
-	public static final int BALL_INITIAL_SPEED=7;
+	public static final float BALL_INITIAL_SPEED=7;
+	public static final float FLOOR_INITIAL_SPEED=2;
 	public static final float G = (float)-1.5;
 	
 	public BingBall(String title)
@@ -40,7 +41,7 @@ public class BingBall extends BasicGame{
 		Color background = new Color(0,0,0);
 		container.getGraphics().setBackground(background);
 		ball=new Ball(GAME_WIDTH/2,GAME_HEIGHT/2,BALL_INITIAL_SPEED);
-		floor=new Floor(GAME_WIDTH/2,GAME_HEIGHT/2);
+		floor=new Floor(GAME_WIDTH/2,GAME_HEIGHT/2,FLOOR_INITIAL_SPEED);
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class BingBall extends BasicGame{
 		Input input = container.getInput();
 		
 		ball.update(input,delta);
+		floor.update();
 		
 	}
 	public static void main(String[] args) {

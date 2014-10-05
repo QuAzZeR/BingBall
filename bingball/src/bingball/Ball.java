@@ -12,7 +12,7 @@ public class Ball {
 	public static final int WIDTH=40;
 	public static final int HEIGHT=40; 
 	
-	public Ball(float x, float y,int speed) throws SlickException {
+	public Ball(float x, float y,float speed) throws SlickException {
 		this.x = x;
 		this.y = y;
 		this.speed=speed;
