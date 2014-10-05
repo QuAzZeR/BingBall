@@ -4,9 +4,11 @@ import java.util.prefs.BackingStoreException;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+
 
 public class BingBall extends BasicGame{
 
@@ -23,6 +25,8 @@ public class BingBall extends BasicGame{
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		// TODO Auto-generated method stub
+		Color background = new Color(0,0,0);
+		container.getGraphics().setBackground(background);
 		
 	}
 
