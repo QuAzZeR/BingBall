@@ -21,7 +21,7 @@ public class Ball {
 	}
 	public void render()
 	{
-		image.draw(x - WIDTH/2, BingBall.GAME_HEIGHT - (y + HEIGHT/2));
+		image.draw(x - WIDTH/2, 20);
 	}
 	public void moveLeft()
 	{
@@ -38,7 +38,7 @@ public class Ball {
 			moveLeft();
 		if(input.isKeyDown(Input.KEY_RIGHT))
 			moveRight();
-		this.y+=BingBall.G;
+		//this.y+=BingBall.G;
 	}
 	
 }

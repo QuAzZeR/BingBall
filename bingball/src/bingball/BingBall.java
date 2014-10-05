@@ -14,6 +14,7 @@ import org.newdawn.slick.SlickException;
 public class BingBall extends BasicGame{
 
 	private Ball ball;
+	private Floor floor;
 	public static final int GAME_WIDTH = 320;
 	public static final int GAME_HEIGHT = 480;
 	public static final int BALL_INITIAL_SPEED=7;
@@ -29,6 +30,7 @@ public class BingBall extends BasicGame{
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		ball.render();
+		floor.render();
 		
 	}
 
@@ -38,6 +40,7 @@ public class BingBall extends BasicGame{
 		Color background = new Color(0,0,0);
 		container.getGraphics().setBackground(background);
 		ball=new Ball(GAME_WIDTH/2,GAME_HEIGHT/2,BALL_INITIAL_SPEED);
+		floor=new Floor(GAME_WIDTH/2,GAME_HEIGHT/2);
 	}
 
 	@Override
