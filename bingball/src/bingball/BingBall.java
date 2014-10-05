@@ -12,13 +12,17 @@ import org.newdawn.slick.SlickException;
 
 public class BingBall extends BasicGame{
 
+	private Ball ball;
+	public static final int GAME_WIDTH = 320;
+	public static final int GAME_HEIGHT = 480;
+	public static final int BALL_INITIAL_SPEED=10;
 	public BingBall(String title)
 	{
 		super(title);
 	}
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		// TODO Auto-generated method stub
+		ball.render();
 		
 	}
 
@@ -27,7 +31,7 @@ public class BingBall extends BasicGame{
 		// TODO Auto-generated method stub
 		Color background = new Color(0,0,0);
 		container.getGraphics().setBackground(background);
-		
+		ball=new Ball(GAME_WIDTH/2,GAME_HEIGHT/2,BALL_INITIAL_SPEED);
 	}
 
 	@Override
@@ -39,11 +43,10 @@ public class BingBall extends BasicGame{
 		try {
 		      BingBall game = new BingBall("Bing Ball");
 		      AppGameContainer appgc = new AppGameContainer(game);
-		      appgc.setDisplayMode(320, 480, false);
+		      appgc.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
 		      appgc.start();
 		    } catch (SlickException e) {
 		      e.printStackTrace();
 		    }
-
 	}
 }
