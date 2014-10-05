@@ -7,6 +7,7 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 
@@ -15,11 +16,16 @@ public class BingBall extends BasicGame{
 	private Ball ball;
 	public static final int GAME_WIDTH = 320;
 	public static final int GAME_HEIGHT = 480;
-	public static final int BALL_INITIAL_SPEED=10;
+	public static final int BALL_INITIAL_SPEED=7;
+	public static final float G = (float)-1.5;
+	
 	public BingBall(String title)
 	{
 		super(title);
 	}
+	
+	
+	
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		ball.render();
@@ -36,7 +42,9 @@ public class BingBall extends BasicGame{
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		// TODO Auto-generated method stub
+		Input input = container.getInput();
+		
+		ball.update(input,delta);
 		
 	}
 	public static void main(String[] args) {
