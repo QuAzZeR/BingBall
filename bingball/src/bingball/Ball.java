@@ -1,6 +1,7 @@
 package bingball;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Ball {
@@ -22,8 +23,22 @@ public class Ball {
 	{
 		image.draw(x - WIDTH/2, BingBall.GAME_HEIGHT - (y + HEIGHT/2));
 	}
-	public void update()
+	public void moveLeft()
 	{
-		
+		x-=speed;
+	
 	}
+	public void moveRight()
+	{
+		x+=speed;
+	}
+	public void update(Input input,int delta)
+	{
+		if(input.isKeyDown(Input.KEY_LEFT))
+			moveLeft();
+		if(input.isKeyDown(Input.KEY_RIGHT))
+			moveRight();
+		this.y+=BingBall.G;
+	}
+	
 }
