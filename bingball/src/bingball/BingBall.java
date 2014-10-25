@@ -10,56 +10,75 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-
-public class BingBall extends BasicGame{
+public class BingBall extends BasicGame {
 
 	private Ball ball;
-	private Floor floor;
+	private Floor[] floors;
+	public static int score=0;
 	public static final int GAME_WIDTH = 320;
 	public static final int GAME_HEIGHT = 480;
-	public static final float BALL_INITIAL_SPEED=7;
-	public static final float FLOOR_INITIAL_SPEED=2;
-	public static final float G = (float)-1.5;
-	
-	public BingBall(String title)
-	{
+	public static float BALL_INITIAL_SPEED = 5;
+	public static float FLOOR_INITIAL_SPEED = 2f;
+	public static final float G = (float) -5;
+	public static final int COUNT_FLOOR = 7;
+	public BingBall(String title) {
 		super(title);
 	}
-	
-	
-	
+
 	@Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		ball.render();
-		floor.render();
-		
+		for (Floor floor : floors)
+			floor.render();
+		g.drawString("score = "+score, 200, 20);
+
 	}
 
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		// TODO Auto-generated method stub
-		Color background = new Color(0,0,0);
+		Color background = new Color(0, 0, 0);
 		container.getGraphics().setBackground(background);
-		ball=new Ball(GAME_WIDTH/2,GAME_HEIGHT/2,BALL_INITIAL_SPEED);
-		floor=new Floor(GAME_WIDTH/2,GAME_HEIGHT/2,FLOOR_INITIAL_SPEED);
+		ball = new Ball(GAME_WIDTH / 2, GAME_HEIGHT, BALL_INITIAL_SPEED);
+		initFloor();
+	}
+
+	private void initFloor() throws SlickException {
+		floors = new Floor[COUNT_FLOOR];
+		for (int i = 0; i < COUNT_FLOOR; i++)
+			floors[i] = new Floor(GAME_WIDTH / 2, GAME_HEIGHT/2 -( 10 + 69 * i),
+					FLOOR_INITIAL_SPEED);
 	}
 
 	@Override
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 		Input input = container.getInput();
+		for(Floor floor : floors)
+			floor.update();
+		for (int i = 0; i < COUNT_FLOOR; i++)
+		{
+			if(ball.isCollide(floors[i]))
+			{
+				System.out.println("isCollide"+i);
+				break;
+			}
+		}
+		ball.update(input, delta);
 		
-		ball.update(input,delta);
-		floor.update();
-		
+
 	}
+
 	public static void main(String[] args) {
 		try {
-		      BingBall game = new BingBall("Bing Ball");
-		      AppGameContainer appgc = new AppGameContainer(game);
-		      appgc.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
-		      appgc.start();
-		    } catch (SlickException e) {
-		      e.printStackTrace();
-		    }
+			BingBall game = new BingBall("Bing Ball");
+			AppGameContainer appgc = new AppGameContainer(game);
+			appgc.setMinimumLogicUpdateInterval(1000 / 60);
+			appgc.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
+			appgc.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 }
