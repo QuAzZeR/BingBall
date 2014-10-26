@@ -45,6 +45,8 @@ public class Ball {
 				BingBall.score++;
 				this.y += BingBall.G;
 			}
+		if(y>470)
+			BingBall.score=-999999;
 		if(BingBall.score%200==0&&BingBall.score!=0)
 			this.speed+=0.3;
 			

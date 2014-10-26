@@ -48,6 +48,7 @@ public class Floor {
 			this.speed+=0.2f;
 		
 	}
+	
 	public void randomX()
 	{
 		Random random = new Random();
